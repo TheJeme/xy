@@ -9,11 +9,7 @@ fn main() {
         let args: Vec<String> = std::env::args().collect();
         let mut expr = String::new();
         if args.len() == 2 && (args[1] == "help" || args[1] == "h") {
-            println!("Available functions:");
-            println!(" square, sqrt, abs, exp, ln, floor, ceil, round, signum, min(x, y, ...), max(x, y, ...)");
-            println!(" sin, cos, tan, asin, acos, atan, atan2, sinh, cosh, tanh, asinh, acosh, atanh");
-            println!("Available constants:");
-            println!(" pi, e");
+            print_help();
             return;
         }
         for i in 1..args.len() {
@@ -38,10 +34,7 @@ fn main() {
             break;
         }
         if line == "help" || line == "h" {
-            println!("Available functions:");
-            println!("sqrt, abs, exp, ln, sin, cos, tan, asin, acos, atan, atan2, sinh, cosh, tanh, asinh, acosh, atanh, floor, ceil, round, signum, min(x, y, ...), max(x, y, ...)");
-            println!("Available constants:");
-            println!("pi, e");
+            print_help();
             continue;
         }
         match eval_str_with_context(&line, &context) {
@@ -53,4 +46,12 @@ fn main() {
 
 fn square(x: f64) -> f64 {
     x * x
+}
+
+fn print_help() {
+    println!("Available functions:");
+    println!(" square, sqrt, abs, exp, ln, floor, ceil, round, signum, min(x, y, ...), max(x, y, ...)");
+    println!(" sin, cos, tan, asin, acos, atan, atan2, sinh, cosh, tanh, asinh, acosh, atanh");
+    println!("Available constants:");
+    println!(" pi, e");
 }
